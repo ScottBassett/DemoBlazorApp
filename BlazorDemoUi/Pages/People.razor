@@ -1,0 +1,86 @@
+﻿@page "/Data/People"
+@using DataAccess
+@using DataAccess.Models
+@using BlazorDemoUi.Models
+
+@inject IPeopleRepository _db
+
+<h1>People Page test</h1>
+
+<h4>Insert New Person</h4>
+<EditForm Model="@_newPerson" OnValidSubmit="@InsertPerson">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="firstName" @bind-Value="_newPerson.FirstName" />
+    <InputText id="lastName" @bind-Value="_newPerson.LastName" />
+    <InputText id="email" @bind-Value="_newPerson.Email" />
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</EditForm>
+
+<h4>Current People</h4>
+
+@if (_people is null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var person in _people)
+        {
+            <tr>
+                <td>@person.FirstName</td>
+                <td>@person.LastName</td>
+                <td>@person.Email</td>
+                <td><button @onclick="@(() => DeletePerson(person))" class="btn btn-danger">Delete</button></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Person> _people;
+    private DisplayPersonModel _newPerson = new DisplayPersonModel();
+
+    protected override async Task OnInitializedAsync() =>
+        _people = await _db.GetPeople();
+
+    private async Task InsertPerson()
+    {
+        var p = new Person
+        {
+            FirstName = _newPerson.FirstName,
+            LastName = _newPerson.LastName,
+            Email = _newPerson.Email
+        };
+
+        await _db.InsertPerson(p);
+
+        _people.Add(p);
+
+        _newPerson = new DisplayPersonModel();
+    }
+
+    private async Task DeletePerson(Person p)
+    {
+        
+        await _db.DeletePerson(p);
+
+        _people.Remove(p);
+    }
+
+}
