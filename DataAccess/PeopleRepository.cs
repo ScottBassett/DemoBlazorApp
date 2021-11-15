@@ -18,9 +18,7 @@ namespace DataAccess
             var sql = "SELECT * FROM dbo.People";
 
             return _db.LoadData<Person, dynamic>(
-                sql,
-                new
-                    { });
+                sql, new { });
         }
 
         public Task InsertPerson(Person person)

@@ -105,10 +105,10 @@ using BlazorDemoUi.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 57 "C:\Training\BlazorDemoApp\BlazorDemoUi\Pages\People.razor"
+#line 59 "C:\Training\BlazorDemoApp\BlazorDemoUi\Pages\People.razor"
        
     private List<Person> _people;
-    private DisplayPersonModel _newPerson = new DisplayPersonModel();
+    private PersonViewModel _newPersonView = new PersonViewModel();
 
     protected override async Task OnInitializedAsync() =>
         _people = await _db.GetPeople();
@@ -117,16 +117,16 @@ using BlazorDemoUi.Models;
     {
         var p = new Person
         {
-            FirstName = _newPerson.FirstName,
-            LastName = _newPerson.LastName,
-            Email = _newPerson.Email
+            FirstName = _newPersonView.FirstName,
+            LastName = _newPersonView.LastName,
+            Email = _newPersonView.Email
         };
 
         await _db.InsertPerson(p);
 
         _people.Add(p);
 
-        _newPerson = new DisplayPersonModel();
+        _newPersonView = new PersonViewModel();
     }
 
     private async Task DeletePerson(Person p)

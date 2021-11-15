@@ -2,7 +2,7 @@
 
 namespace BlazorDemoUi.Models
 {
-    public class DisplayPersonModel
+    public class PersonViewModel
     {
         [Required]
         [StringLength(15, ErrorMessage = "First name is too long.")]
