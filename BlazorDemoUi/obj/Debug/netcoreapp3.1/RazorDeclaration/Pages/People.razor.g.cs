@@ -105,7 +105,7 @@ using BlazorDemoUi.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 55 "C:\Training\BlazorDemoApp\BlazorDemoUi\Pages\People.razor"
+#line 57 "C:\Training\BlazorDemoApp\BlazorDemoUi\Pages\People.razor"
        
     private List<Person> _people;
     private DisplayPersonModel _newPerson = new DisplayPersonModel();
@@ -131,7 +131,6 @@ using BlazorDemoUi.Models;
 
     private async Task DeletePerson(Person p)
     {
-        
         await _db.DeletePerson(p);
 
         _people.Remove(p);
