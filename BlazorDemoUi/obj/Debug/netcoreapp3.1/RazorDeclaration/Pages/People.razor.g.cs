@@ -134,7 +134,7 @@ using BlazorDemoUi.Models;
         await _db.UpdatePerson(p);
         
     }
-    \
+    
     private async Task DeletePerson(Person p)
     {
         await _db.DeletePerson(p);
