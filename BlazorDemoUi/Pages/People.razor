@@ -9,13 +9,13 @@
 
 <h4>Insert New Person</h4>
 <EditForm Model="@_newPerson" OnValidSubmit="@InsertPerson">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
 
-    <InputText id="firstName" @bind-Value="_newPerson.FirstName" />
-    <InputText id="lastName" @bind-Value="_newPerson.LastName" />
-    <InputText id="email" @bind-Value="_newPerson.Email" />
-    
+    <InputText id="firstName" @bind-Value="_newPerson.FirstName"/>
+    <InputText id="lastName" @bind-Value="_newPerson.LastName"/>
+    <InputText id="email" @bind-Value="_newPerson.Email"/>
+
     <button type="submit" class="btn btn-primary">Submit</button>
 
 </EditForm>
@@ -39,13 +39,15 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var person in _people)
+        @foreach (Person person in _people)
         {
             <tr>
                 <td>@person.FirstName</td>
                 <td>@person.LastName</td>
                 <td>@person.Email</td>
-                <td><button @onclick="@(() => DeletePerson(person))" class="btn btn-danger">Delete</button></td>
+                <td>
+                    <button @onclick="@(() => DeletePerson(person))" class="btn btn-danger">Delete</button>
+                </td>
             </tr>
         }
         </tbody>
@@ -77,7 +79,6 @@ else
 
     private async Task DeletePerson(Person p)
     {
-        
         await _db.DeletePerson(p);
 
         _people.Remove(p);
