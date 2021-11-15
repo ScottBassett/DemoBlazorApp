@@ -21,10 +21,25 @@ namespace DataAccess
                 sql, new { });
         }
 
+        public Task GetPersonById(int id)
+        {
+            var sql = "SELECT * FROM dbo.People WHERE Id=Id";
+
+            return _db.LoadData<Person, dynamic>(
+                sql, new { Id = id });
+        }
+
         public Task InsertPerson(Person person)
         {
             var sql = @"INSERT INTO dbo.People(FirstName, LastName, Email)
                             values (@FirstName, @LastName, @Email)";
+
+            return _db.SaveData(sql, person);
+        }
+
+        public Task UpdatePerson(Person person)
+        {
+            var sql = @"UPDATE dbo.People SET FirstName=@FirstName, LastName=@LastName, Email=@Email WHERE Id=@Id";
 
             return _db.SaveData(sql, person);
         }

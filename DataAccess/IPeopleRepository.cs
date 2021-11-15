@@ -8,6 +8,7 @@ namespace DataAccess
     {
         Task<List<Person>> GetPeople();
         Task InsertPerson(Person person);
+        Task UpdatePerson(Person person);
         Task DeletePerson(Person person);
     }
 }

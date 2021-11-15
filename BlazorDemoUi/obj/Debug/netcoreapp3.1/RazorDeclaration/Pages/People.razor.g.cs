@@ -108,7 +108,7 @@ using BlazorDemoUi.Models;
 #line 59 "C:\Training\BlazorDemoApp\BlazorDemoUi\Pages\People.razor"
        
     private List<Person> _people;
-    private PersonViewModel _newPersonView = new PersonViewModel();
+    private PersonViewModel _newPerson = new PersonViewModel();
 
     protected override async Task OnInitializedAsync() =>
         _people = await _db.GetPeople();
@@ -117,25 +117,30 @@ using BlazorDemoUi.Models;
     {
         var p = new Person
         {
-            FirstName = _newPersonView.FirstName,
-            LastName = _newPersonView.LastName,
-            Email = _newPersonView.Email
+            FirstName = _newPerson.FirstName,
+            LastName = _newPerson.LastName,
+            Email = _newPerson.Email
         };
 
         await _db.InsertPerson(p);
 
         _people.Add(p);
 
-        _newPersonView = new PersonViewModel();
+        _newPerson = new PersonViewModel();
     }
 
+    private async Task UpdatePerson(Person p)
+    {
+        await _db.UpdatePerson(p);
+        
+    }
+    \
     private async Task DeletePerson(Person p)
     {
         await _db.DeletePerson(p);
 
         _people.Remove(p);
     }
-
 
 #line default
 #line hidden

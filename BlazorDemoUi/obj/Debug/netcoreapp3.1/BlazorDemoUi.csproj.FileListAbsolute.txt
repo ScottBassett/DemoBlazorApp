@@ -60,3 +60,5 @@ C:\Training\BlazorDemoApp\BlazorDemoUi\bin\Debug\netcoreapp3.1\DataAccess.dll
 C:\Training\BlazorDemoApp\BlazorDemoUi\bin\Debug\netcoreapp3.1\DataAccess.pdb
 C:\Training\BlazorDemoApp\BlazorDemoUi\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\People.razor.g.cs
 C:\Training\BlazorDemoApp\BlazorDemoUi\obj\Debug\netcoreapp3.1\Razor\Pages\People.razor.g.cs
+C:\Training\BlazorDemoApp\BlazorDemoUi\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditForm.razor.g.cs
+C:\Training\BlazorDemoApp\BlazorDemoUi\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\Person.razor.g.cs
